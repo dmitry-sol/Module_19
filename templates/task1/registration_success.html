@@ -1,0 +1,9 @@
+{% extends 'index.html' %}
+{% block title %}Успх{% endblock %}
+{% block header %}Успешная регистрация{% endblock %}
+
+{% block content %}
+<h3>Зарегистрирован</h3>
+    <h1>Приветствуем, {{ username }}!</h1>
+    <a href="{% url 'home' %}">На главную</a>
+{% endblock %}
