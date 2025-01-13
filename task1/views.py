@@ -53,5 +53,4 @@ def sign_up_by_django(request):
 
 
 def news(request):
-    return render(request,
-                  'task1/news.html')
+    return render(request,'task1/news.html')
