@@ -1,0 +1,8 @@
+../venv/
+.idea/
+*.txt
+!requirements.txt
+draft.*
+draft*.*
+**/__pycache__/
+*.pyc
