@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .forms import UserRegister
-from .models import Buyer, Game
+from .models import *
 
 
 buyers = Buyer.objects.all()
@@ -9,6 +10,21 @@ print(buyers)
 
 def index(request):
     return render(request, 'index.html')
+
+
+def news(request):
+    posts = News.objects.all().order_by('-id')
+    paginator = Paginator(posts, 3)
+    page_number = request.GET.get('page')
+    try:
+        page_posts = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_posts = paginator.page(1)
+    except EmptyPage:
+        page_posts = paginator.page(paginator.num_pages)
+
+    return render(request, 'task1/news.html', {'news': page_posts})
+
 
 def catalog(request):
     games = Game.objects.all()
@@ -52,5 +68,3 @@ def sign_up_by_django(request):
     return render(request, 'task1/registration_page.html', {'form': form})
 
 
-def news(request):
-    return render(request, 'task1/news.html')
